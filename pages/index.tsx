@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Orbitron, Rajdhani } from 'next/font/google';
 
 const orbitron = Orbitron({
@@ -164,7 +165,7 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-gray-300 mt-6">A Celebration of Open Source</p>
           <p className="text-lg md:text-xl text-gray-400 mt-4">October 25-27, 2025 • Mini Hall 1,2</p>
           <div className="flex flex-col sm:flex-row gap-6 mt-12">
-            <a
+            <Link
               href="/register"
               className="inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
             >
@@ -178,7 +179,7 @@ export default function Home() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
-            </a>
+            </Link>
             <a
               href="https://discord.com/invite/ossomehacks" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
@@ -426,7 +427,7 @@ export default function Home() {
             <div className="space-y-8 text-left max-w-3xl">
               <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <h3 className="text-3xl font-semibold mb-3">What is a hackathon?</h3>
-                <p className="text-gray-300 text-xl">A hackathon is an event where people come together to build creative solutions, learn new skills, and collaborate on projects—often over a short period like a weekend.</p>
+                <p className="text-gray-300 text-xl">A hackathon is an event where people come together to build creative solutions, learn new skills, and collaborate on projects—&ldquo;often over a short period like a weekend.&rdquo;</p>
               </div>
               <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <h3 className="text-3xl font-semibold mb-3">Who can participate?</h3>

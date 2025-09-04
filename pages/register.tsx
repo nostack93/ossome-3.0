@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 import { Orbitron, Rajdhani } from 'next/font/google';
-import Link from 'next/link';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -214,7 +213,7 @@ export default function Register() {
             </div>
 
             <div className="space-y-4 pt-4">
-                <p className="text-sm text-gray-400">"We are currently in the process of partnering with MLH. The following 3 checkboxes are for this partnership. If we do not end up partnering with MLH, your information will not be shared"</p>
+                <p className="text-sm text-gray-400">&ldquo;We are currently in the process of partnering with MLH. The following 3 checkboxes are for this partnership. If we do not end up partnering with MLH, your information will not be shared&rdquo;</p>
                 <div className="flex items-start">
                     <input id="mlh-coc" type="checkbox" className="h-4 w-4 text-cyan-400 border-gray-500 rounded focus:ring-cyan-400 mt-1" />
                     <label htmlFor="mlh-coc" className="ml-3 text-sm">
