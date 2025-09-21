@@ -480,7 +480,7 @@ export default function Home() {
         <div className="relative z-20 flex flex-col items-center">
           <h1 id="hero-title" className={`font-bold text-white tracking-tight font-orbitron hero-title-glow text-center leading-tight`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif', opacity: 0, transform: 'scale(0.95)'}}>
             <span className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] whitespace-nowrap">OSSome Hacks</span>
-            <span className="block sm:hidden text-2xl xs:text-3xl mt-2">3.0</span>
+            <span className="block sm:hidden text-4xl xs:text-5xl mt-2">3.0</span>
             <span className="hidden sm:inline text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem]"> 3.0</span>
           </h1>
           <p className="text-2xl md:text-3xl text-gray-300 mt-6">A Celebration of Open Source</p>
