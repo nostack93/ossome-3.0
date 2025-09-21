@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Orbitron, Rajdhani } from 'next/font/google';
+import gsap from 'gsap';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -55,6 +56,318 @@ export default function Home() {
       });
     };
   }, []);
+
+  // GSAP Hero Title Animation
+  useEffect(() => {
+    const titleElement = document.getElementById('hero-title');
+    if (titleElement) {
+      const tl = gsap.timeline();
+
+      // Reset to starting position
+      gsap.set(titleElement, {
+        opacity: 0,
+        scale: 0.95
+      });
+
+      // Animate the title entrance - smooth unfade
+      tl.to(titleElement, {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+        delay: 0.3
+      });
+    }
+  }, []);
+
+  // GSAP Interactive Sponsor Cards
+  useEffect(() => {
+    const sponsorCards = gsap.utils.toArray('.sponsor-card') as HTMLElement[];
+
+    sponsorCards.forEach((card: HTMLElement) => {
+      const bgLogo = card.querySelector('.sponsor-logo') as HTMLElement;
+
+      // Initial state
+      gsap.set(card, {
+        transformOrigin: 'center'
+      });
+
+      // Hover in animation
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          y: -10,
+          rotationY: 5,
+          rotationX: 3,
+          scale: 1.05,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+
+        if (bgLogo) {
+          gsap.to(bgLogo, {
+            scale: 1.1,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        }
+
+      });
+
+      // Hover out animation
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          y: 0,
+          rotationY: 0,
+          rotationX: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+
+        if (bgLogo) {
+          gsap.to(bgLogo, {
+            scale: 1,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        }
+      });
+    });
+  }, []);
+
+  // GSAP Button Micro-interactions
+  useEffect(() => {
+    const buttons = gsap.utils.toArray('.interactive-btn') as HTMLElement[];
+
+    buttons.forEach((button: HTMLElement) => {
+      // Hover in
+      button.addEventListener('mouseenter', () => {
+        gsap.to(button, {
+          scale: 1.03,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      // Hover out
+      button.addEventListener('mouseleave', () => {
+        gsap.to(button, {
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      // Glitch effect on hover and auto-start
+      const span = button.querySelector('span') as HTMLElement;
+      if (span) {
+        span.dataset.value = span.textContent || '';
+
+        const scramble = () => {
+          const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          let iteration = 0;
+          let interval: NodeJS.Timeout | null = null;
+
+          interval = setInterval(() => {
+            span.textContent = span.dataset.value?.split("")
+              .map((letter, index) => {
+                if (index < iteration) {
+                  return span.dataset.value![index];
+                }
+                return letters[Math.floor(Math.random() * 26)];
+              })
+              .join("") || '';
+
+            if (iteration >= (span.dataset.value?.length || 0)) {
+              clearInterval(interval!);
+            }
+
+            iteration += 1 / 3;
+          }, 30);
+        };
+
+        button.addEventListener('mouseover', scramble);
+
+        // Auto-start after a short delay
+        setTimeout(() => scramble(), 200);
+      }
+
+    });
+  }, []);
+
+  // GSAP Blur Reveal Animation for About Section
+  useEffect(() => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const maskedElements = gsap.utils.toArray('.masked-element') as HTMLElement[];
+
+      gsap.fromTo(maskedElements, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+        stagger: 0.4,
+        scrollTrigger: {
+          trigger: '.about-section',
+          start: 'top 70%',
+          end: 'bottom 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+    });
+
+    return () => {
+      // No cleanup possible here since ScrollTrigger is inside import
+      // But since it's one time, it's ok
+    };
+  }, []);
+
+  // GSAP FAQ Accordion Animation
+  useEffect(() => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.fromTo('.faq-card', {
+        y: 50,
+        opacity: 0,
+        scale: 0.95
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: '.faq-section',
+          start: 'top 95%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+
+      const faqCards = gsap.utils.toArray('.faq-card') as HTMLElement[];
+
+      faqCards.forEach((card, i) => {
+        const question = card.querySelector('.faq-question') as HTMLElement;
+        const answer = card.querySelector('.faq-answer') as HTMLElement;
+        const plusMinus = question.querySelector('span') as HTMLElement;
+
+        // Initial state
+        gsap.set(answer, { height: 0, opacity: 0 });
+
+        let isOpen = false;
+
+        question.addEventListener('click', () => {
+          if (!isOpen) {
+            // Open
+            const answerHeight = (answer.firstElementChild as HTMLElement).scrollHeight + 16; // + pt-3
+            plusMinus.textContent = '-';
+            gsap.timeline()
+              .to(card, { scale: 1.02, duration: 0.1 })
+              .to(answer, { height: answerHeight, opacity: 1, duration: 0.4, ease: 'power2.out' }, 0)
+              .to(card, { scale: 1, duration: 0.1 });
+          } else {
+            // Close
+            plusMinus.textContent = '+';
+            gsap.timeline()
+              .to(card, { scale: 1.02, duration: 0.1 })
+              .to(answer, { height: 0, opacity: 0, duration: 0.4, ease: 'power2.out' }, 0)
+              .to(card, { scale: 1, duration: 0.1 });
+          }
+          isOpen = !isOpen;
+        });
+      });
+    });
+
+    return () => {
+      // Remove listeners if needed, but since static, ok
+    };
+  }, []);
+
+  // GSAP Apple-like Stagger Animation for Schedule Cards
+  useEffect(() => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to('.schedule-card', {
+        translateY: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: '.schedule-container',
+          start: 'top 90%',
+          toggleActions: 'restart none restart none'
+        }
+      });
+    });
+
+    return () => {};
+  }, []);
+
+  // GSAP Apple-like Stagger Animation for Prize Cards
+  useEffect(() => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prizeCards = gsap.utils.toArray('.prize-card') as HTMLElement[];
+      prizeCards.forEach((card: HTMLElement, index) => {
+        const tl = gsap.timeline({ paused: true });
+        tl.set(card, { y: 50, opacity: 0 })
+          .to(card, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.2 * index);
+
+        ScrollTrigger.create({
+          trigger: '.prize-container',
+          start: 'top 95%',
+          end: 'bottom 10%',
+          toggleActions: 'play none none reset',
+          animation: tl
+        });
+      });
+    });
+
+    return () => {};
+  }, []);
+
+  // GSAP Subtitle Text Glitch Effect
+  useEffect(() => {
+    const subtitleElements = gsap.utils.toArray('.subtitle-text') as HTMLElement[];
+
+    subtitleElements.forEach((element, index) => {
+      const scramble = () => {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let iteration = 0;
+        let interval: NodeJS.Timeout | null = null;
+
+        interval = setInterval(() => {
+          element.textContent = element.dataset.value?.split("")
+            .map((letter, idx) => {
+              if (idx < iteration) {
+                return element.dataset.value![idx];
+              }
+              return letters[Math.floor(Math.random() * 26)];
+            })
+            .join("") || '';
+
+          if (iteration >= (element.dataset.value?.length || 0)) {
+            clearInterval(interval!);
+          }
+
+          iteration += 1 / 3;
+        }, 30);
+      };
+
+      // Start glitch effect with staggered delay
+      setTimeout(() => scramble(), 800 + (index * 200));
+    });
+  }, []);
+
+
+
+
   return (
     <main className={`bg-black text-white ${orbitron.variable} ${rajdhani.variable} font-sans relative overflow-x-hidden`} style={{fontFamily: 'var(--font-rajdhani), Rajdhani, Arial, sans-serif'}}>
       {/* Animated Stars Background for Whole Page */}
@@ -84,6 +397,11 @@ export default function Home() {
           opacity: 0.7;
           animation: twinkle 2s infinite alternate, drift 12s linear infinite;
         }
+        .planet {
+          position: absolute;
+          border-radius: 50%;
+          animation: twinkle 2s infinite alternate, drift 20s linear infinite;
+        }
         @keyframes twinkle {
           0% { opacity: 0.5; }
           100% { opacity: 1; }
@@ -111,17 +429,18 @@ export default function Home() {
           }
         }
 
-        @media (max-width: 640px) {
-          .sponsor-carousel {
-            animation-duration: 40s;
-          }
-        }
-
         @media (max-width: 480px) {
           .sponsor-carousel {
             animation-duration: 35s;
           }
         }
+
+        /* Hero Title Glow Effect */
+        .hero-title-glow {
+          text-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.2);
+        }
+
+
       `}</style>
       {/* Hero Section */}
       <section className="min-h-screen relative flex flex-col items-center justify-center text-center px-6 overflow-hidden fade-in-section">
@@ -129,7 +448,6 @@ export default function Home() {
           src="/wp14820852-spacex-wallpapers.webp"
           alt="Background"
           className="absolute inset-0 w-full h-full object-cover object-top opacity-50"
-          style={{filter: 'blur(4px)'}}
           aria-hidden="true"
           loading="eager"
         />
@@ -158,16 +476,19 @@ export default function Home() {
             </div>
           ))}
         </div>
+
         <div className="relative z-20 flex flex-col items-center">
-          <h1 className={`font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] text-white tracking-tight font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>
-            OSSome Hacks 3.0
+          <h1 id="hero-title" className={`font-bold text-white tracking-tight font-orbitron hero-title-glow text-center leading-tight`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif', opacity: 0, transform: 'scale(0.95)'}}>
+            <span className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] whitespace-nowrap">OSSome Hacks</span>
+            <span className="block sm:hidden text-2xl xs:text-3xl mt-2">3.0</span>
+            <span className="hidden sm:inline text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem]"> 3.0</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mt-6">A Celebration of Open Source</p>
           <p className="text-lg md:text-xl text-gray-400 mt-4">October 25-27, 2025 • Mini Hall 1,2</p>
           <div className="flex flex-col sm:flex-row gap-6 mt-12">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
+              className="interactive-btn inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
             >
               <span>REGISTER</span>
               <svg
@@ -182,14 +503,14 @@ export default function Home() {
             </Link>
             <a
               href="https://discord.com/invite/ossomehacks" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
+              className="interactive-btn inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
             >
               <img src="/pngfind.com-discord-icon-png-283551.png" alt="Discord" className="w-4.5 h-3.5" />
               <span>DISCORD</span>
             </a>
           </div>
           {/* Scroll Down Indicator */}
-          <div className="mt-16 animate-bounce text-cyan-300 opacity-70">
+          <div id="scroll-indicator" className="mt-16 text-cyan-300 opacity-70">
             <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M12 5v14m0 0-7-7m7 7 7-7"/></svg>
           </div>
         </div>
@@ -197,16 +518,15 @@ export default function Home() {
 
   <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
   {/* About Section */}
-  <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
+  <section className="py-20 px-6 max-w-4xl mx-auto text-center">
         <section
-          className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
+          className="about-section relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
         >
           <img
             src="/wp12457709-spacex-4k-wallpapers.jpg"
             alt="About OSSome Hacks 3.0"
             className="absolute inset-0 w-full h-full object-cover object-top opacity-50"
-            style={{filter: 'blur(4px)'}}
             aria-hidden="true"
             loading="lazy"
           />
@@ -236,14 +556,16 @@ export default function Home() {
             ))}
           </div>
           <div className="relative z-20 w-full flex flex-col items-center justify-center py-20">
-            <h2 className={`font-bold text-4xl sm:text-5xl md:text-5xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About OSSome Hacks 3.0</h2>
-            <p className="text-gray-300 text-lg sm:text-xl md:text-xl mb-4 max-w-4xl">
-              OSSome Hacks is a 48-hour hackathon dedicated to celebrating and contributing to open-source software. Join developers, designers, and innovators from around the globe to build amazing projects, learn new skills, and connect with the community.
-            </p>
-            <p className="text-gray-300 text-lg sm:text-xl md:text-xl max-w-4xl">
-              Our mission is to empower the next generation of open-source contributors and foster a vibrant, inclusive tech community.
-            </p>
-           
+            <div className="masked-container" style={{overflow: 'hidden'}}>
+              <h2 id="about-title" className={`masked-element font-bold text-4xl sm:text-5xl md:text-5xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About OSSome Hacks 3.0</h2>
+              <p className="masked-element text-gray-300 text-lg sm:text-xl md:text-xl mb-4 max-w-4xl">
+                OSSome Hacks is a 48-hour hackathon dedicated to celebrating and contributing to open-source software. Join developers, designers, and innovators from around the globe to build amazing projects, learn new skills, and connect with the community.
+              </p>
+              <p className="masked-element text-gray-300 text-lg sm:text-xl md:text-xl max-w-4xl">
+                Our mission is to empower the next generation of open-source contributors and foster a vibrant, inclusive tech community.
+              </p>
+            </div>
+
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
         </section>
@@ -252,15 +574,14 @@ export default function Home() {
   <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
   {/* Why Participate Section */}
   <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
-    <section
-      className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
-      style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
-    >
+        <section
+          className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
+          style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
+        >
       <img
         src="/wp15659541-spacex-mars-wallpapers.png"
         alt="Why Participate Background"
         className="absolute inset-0 w-full h-full object-cover object-center opacity-50"
-        style={{filter: 'blur(4px)'}}
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
@@ -290,20 +611,20 @@ export default function Home() {
       </div>
             <div className="relative z-20 flex flex-col items-center">
     <h2 className="font-bold text-5xl text-center mb-12 font-orbitron" style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Schedule</h2>
-    <div className="grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto">
-        <div className="bg-white/5 p-8 rounded-lg">
+    <div className="schedule-container grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto">
+        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 1: Kickoff</h3>
             <p className="text-gray-300 text-lg">Opening Ceremony, Keynotes, and Team Formation.</p>
         </div>
-        <div className="bg-white/5 p-8 rounded-lg">
+        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 2: Hacking</h3>
             <p className="text-gray-300 text-lg">Workshops, Mentoring Sessions, and Mini-Events.</p>
         </div>
-        <div className="bg-white/5 p-8 rounded-lg">
+        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 3: Finale</h3>
             <p className="text-gray-300 text-lg">Project Submissions, Demos, and Awards Ceremony.</p>
         </div>
-        <div className="bg-white/5 p-8 rounded-lg">
+        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 4: Afterparty</h3>
             <p className="text-gray-300 text-lg">Afterparty & Community Hangout.</p>
         </div>
@@ -321,8 +642,7 @@ export default function Home() {
           <img
             src="/wp15270824-spacex-desktop-wallpapers.jpg"
             alt="Sponsors Background"
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-50"
-            style={{filter: 'blur(4px)'}}
+            className="sponsor-bg absolute inset-0 w-full h-full object-cover object-center opacity-50"
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
@@ -350,12 +670,12 @@ export default function Home() {
               </div>
             ))}
           </div>
+
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Sponsors</h2>
             <p className="mb-8 text-gray-300 text-xl">Interested in sponsoring? Email us at <a href="mailto:sponsor@ossomehacks.com" className="underline text-cyan-300">sponsor@ossomehacks.com</a></p>
-            <div className="relative w-full overflow-hidden min-h-[250px] flex items-center py-8" style={{height:'250px'}}>
+            <div className="relative w-full overflow-hidden min-h-[250px] flex items-center py-8 sponsor-container" style={{height:'250px'}}>
               <div className="sponsor-carousel">
-                {/* First set */}
                 {[...Array(3)].map((_, setIndex) => (
                   [
                     { name: "GitHub", logo: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", bg: "bg-gray-900" },
@@ -369,9 +689,9 @@ export default function Home() {
                   ].map((sponsor, i) => (
                     <div
                       key={`set-${setIndex}-${i}`}
-                      className="bg-white/10 px-10 py-10 rounded-3xl flex flex-col items-center shadow-xl min-w-[240px] mx-4 flex-shrink-0 hover:bg-white/15 transition-all duration-300"
+                      className="sponsor-card bg-white/10 px-10 py-10 rounded-3xl flex flex-col items-center shadow-xl min-w-[240px] mx-4 flex-shrink-0 hover:bg-white/15 transition-all duration-300"
                     >
-                      <div className={`w-24 h-24 rounded-2xl mb-6 ${sponsor.bg} flex items-center justify-center p-4`}>
+                      <div className={`sponsor-logo w-24 h-24 rounded-2xl mb-6 ${sponsor.bg} flex items-center justify-center p-4`}>
                         <img src={sponsor.logo} alt={sponsor.name} className="w-16 h-16 object-contain" loading="lazy" />
                       </div>
                       <span className="text-xl font-bold text-cyan-200">{sponsor.name}</span>
@@ -387,14 +707,13 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
-          className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
+          className="faq-section relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
         >
           <img
             src="/wp5974237-4k-computer-black-hole-wallpapers.jpg"
             alt="FAQ Background"
             className="absolute inset-0 w-full h-full object-cover object-center opacity-50"
-            style={{filter: 'blur(4px)'}}
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
@@ -425,21 +744,41 @@ export default function Home() {
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Frequently Asked Questions</h2>
             <div className="space-y-8 text-left max-w-3xl">
-              <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
-                <h3 className="text-3xl font-semibold mb-3">What is a hackathon?</h3>
-                <p className="text-gray-300 text-xl">A hackathon is an event where people come together to build creative solutions, learn new skills, and collaborate on projects—&ldquo;often over a short period like a weekend.&rdquo;</p>
+              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">What is a hackathon?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">A hackathon is an event where people come together to build creative solutions, learn new skills, and collaborate on projects—&ldquo;often over a short period like a weekend.&rdquo;</p>
+                </div>
               </div>
-              <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
-                <h3 className="text-3xl font-semibold mb-3">Who can participate?</h3>
-                <p className="text-gray-300 text-xl">Anyone interested in technology, design, or innovation! OSSome Hacks 3.0 is open to students and professionals of all skill levels.</p>
+              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">Who can participate?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">Anyone interested in technology, design, or innovation! OSSome Hacks 3.0 is open to students and professionals of all skill levels.</p>
+                </div>
               </div>
-              <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
-                <h3 className="text-3xl font-semibold mb-3">How do I stay updated?</h3>
-                <p className="text-gray-300 text-xl">Follow us on social media and join our Discord for the latest updates. You can also reach out via email for any questions.</p>
+              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">How do I stay updated?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">Follow us on social media and join our Discord for the latest updates. You can also reach out via email for any questions.</p>
+                </div>
               </div>
-              <div className="bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
-                <h3 className="text-3xl font-semibold mb-3">Do I need a team?</h3>
-                <p className="text-gray-300 text-xl">No team? No problem! You can participate solo or find teammates during the event through our Discord and networking sessions.</p>
+              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">Do I need a team?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">No team? No problem! You can participate solo or find teammates during the event through our Discord and networking sessions.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -460,7 +799,6 @@ export default function Home() {
             src="/djesic-m4W2WDnNEyk-unsplash.jpg"
             alt="Prizes Background"
             className="absolute inset-0 w-full h-full object-cover object-center opacity-50"
-            style={{filter: 'blur(4px)'}}
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
@@ -490,16 +828,16 @@ export default function Home() {
           </div>
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Prizes</h2>
-            <div className="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
-              <div className="bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10">
+            <div className="prize-container grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
+              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Grand Prize</h3>
                 <p className="text-gray-300 text-lg">₹1,00,000</p>
               </div>
-              <div className="bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Runner Up</h3>
                 <p className="text-gray-300 text-lg">₹50,000</p>
               </div>
-              <div className="bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Best Freshman Team</h3>
                 <p className="text-gray-300 text-lg">₹25,000</p>
               </div>
