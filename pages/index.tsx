@@ -483,8 +483,8 @@ export default function Home() {
             <span className="block sm:hidden text-2xl xs:text-3xl mt-2">3.0</span>
             <span className="hidden sm:inline text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem]"> 3.0</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mt-6">A Celebration of Open Source</p>
-          <p className="text-lg md:text-xl text-gray-400 mt-4">October 25-27, 2025 • Mini Hall 1,2</p>
+          <p className="text-2xl md:text-3xl text-gray-300 mt-6">A Celebration of Open Source</p>
+          <p className="text-xl md:text-2xl text-gray-400 mt-4">October 25-27, 2025 • Mini Hall 1,2</p>
           <div className="flex flex-col sm:flex-row gap-6 mt-12">
             <Link
               href="/register"
