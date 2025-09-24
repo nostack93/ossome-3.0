@@ -672,8 +672,8 @@ export default function Home() {
           </div>
 
           <div className="relative z-20 flex flex-col items-center">
-            <div className="flex flex-col sm:flex-row items-center justify-center mb-8 w-full max-w-6xl px-6">
-              <h2 className={`font-bold text-4xl sm:text-5xl mb-4 sm:mb-0 font-orbitron sm:mr-8`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
+            <div className="flex flex-col-reverse sm:flex-row items-center justify-center mb-8 w-full max-w-6xl px-6">
+              <h2 className={`font-bold text-4xl sm:text-5xl mt-4 sm:mt-0 font-orbitron sm:mr-8`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
               <a
                 href="mailto:team@ossomehacks.com"
                 className="interactive-btn hidden sm:inline-flex items-center justify-center gap-x-2 px-6 sm:px-8 py-3 border border-white/40 text-sm sm:text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
@@ -690,7 +690,7 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <div className="relative w-full overflow-hidden py-4 sm:py-8 mt-6 sm:mt-12 sponsor-container">
+            <div className="relative w-full overflow-hidden py-2 sm:py-8 mt-2 sm:mt-12 sponsor-container">
               <div className="sponsor-carousel">
                 {[...Array(20)].flatMap((_, setIndex) => [
                   "/sponsers/githubuniverse.com-34.svg",
@@ -879,7 +879,7 @@ export default function Home() {
           </div>
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-4xl sm:text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Gallery</h2>
-            <div className="gallery-container relative w-full overflow-hidden min-h-[300px] sm:min-h-[400px] flex items-center py-4 sm:py-8 mt-4 sm:mt-8 sponsor-container" style={{height:'300px'}}>
+            <div className="gallery-container relative w-full overflow-hidden min-h-[200px] sm:min-h-[400px] flex items-center py-2 sm:py-8 mt-2 sm:mt-8 sponsor-container" style={{height:'200px'}}>
               <div className="gallery-carousel">
                 {[...Array(3)].flatMap((_, setIndex) => [
                   "/sponsers/githubuniverse.com-34.svg",
