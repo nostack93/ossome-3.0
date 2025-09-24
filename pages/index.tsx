@@ -479,9 +479,9 @@ export default function Home() {
 
         <div className="relative z-20 flex flex-col items-center">
           <h1 id="hero-title" className={`font-bold text-white tracking-tight font-orbitron hero-title-glow text-center leading-tight`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif', opacity: 0, transform: 'scale(0.95)'}}>
-            <span className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] whitespace-nowrap">OSSome Hacks</span>
-            <span className="block sm:hidden text-4xl xs:text-5xl mt-2">3.0</span>
-            <span className="hidden sm:inline text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[8rem]"> 3.0</span>
+            <span className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[8rem] whitespace-nowrap">OSSome</span>
+            <span className="block sm:hidden text-6xl xs:text-7xl mt-2">Hacks 3.0</span>
+            <span className="hidden sm:inline text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[8rem]"> Hacks 3.0</span>
           </h1>
           <p className="text-2xl md:text-3xl text-gray-300 mt-6">A Celebration of Open Source</p>
           <p className="text-xl md:text-2xl text-gray-400 mt-4">October 25-27, 2025 • Mini Hall 1,2</p>
@@ -518,7 +518,7 @@ export default function Home() {
 
   <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
   {/* About Section */}
-  <section className="py-20 px-6 max-w-4xl mx-auto text-center">
+  <section className="py-20 px-12 md:px-6 max-w-4xl mx-auto text-center">
         <section
           className="about-section relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -555,9 +555,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="relative z-20 w-full flex flex-col items-center justify-center py-20">
+          <div className="relative z-20 w-full flex flex-col items-center justify-center py-20 px-6">
             <div className="masked-container" style={{overflow: 'hidden'}}>
-              <h2 id="about-title" className={`masked-element font-bold text-4xl sm:text-5xl md:text-5xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About OSSome Hacks 3.0</h2>
+              <h2 id="about-title" className={`masked-element font-bold text-5xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About</h2>
               <p className="masked-element text-gray-300 text-lg sm:text-xl md:text-xl mb-4 max-w-4xl">
                 OSSome Hacks is a 48-hour hackathon dedicated to celebrating and contributing to open-source software. Join developers, designers, and innovators from around the globe to build amazing projects, learn new skills, and connect with the community.
               </p>
@@ -573,7 +573,7 @@ export default function Home() {
 
   <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
   {/* Why Participate Section */}
-  <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
+  <section className="py-20 px-12 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
           className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -609,22 +609,22 @@ export default function Home() {
           </div>
         ))}
       </div>
-            <div className="relative z-20 flex flex-col items-center">
-    <h2 className="font-bold text-5xl text-center mb-12 font-orbitron" style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Schedule</h2>
+            <div className="relative z-20 flex flex-col items-center px-6">
+    <h2 className="font-bold text-5xl text-center mb-8 md:mb-12 font-orbitron" style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Schedule</h2>
     <div className="schedule-container grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto">
-        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
+        <div className="schedule-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 1: Kickoff</h3>
             <p className="text-gray-300 text-lg">Opening Ceremony, Keynotes, and Team Formation.</p>
         </div>
-        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
+        <div className="schedule-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 2: Hacking</h3>
             <p className="text-gray-300 text-lg">Workshops, Mentoring Sessions, and Mini-Events.</p>
         </div>
-        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
+        <div className="schedule-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 3: Finale</h3>
             <p className="text-gray-300 text-lg">Project Submissions, Demos, and Awards Ceremony.</p>
         </div>
-        <div className="schedule-card bg-white/5 p-8 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
+        <div className="schedule-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 4: Afterparty</h3>
             <p className="text-gray-300 text-lg">Afterparty & Community Hangout.</p>
         </div>
@@ -673,7 +673,6 @@ export default function Home() {
 
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Sponsors</h2>
-            <p className="mb-8 text-gray-300 text-xl">Interested in sponsoring? Email us at <a href="mailto:sponsor@ossomehacks.com" className="underline text-cyan-300">sponsor@ossomehacks.com</a></p>
             <div className="relative w-full overflow-hidden min-h-[250px] flex items-center py-8 sponsor-container" style={{height:'250px'}}>
               <div className="sponsor-carousel">
                 {[...Array(3)].map((_, setIndex) => (
@@ -689,7 +688,7 @@ export default function Home() {
                   ].map((sponsor, i) => (
                     <div
                       key={`set-${setIndex}-${i}`}
-                      className="sponsor-card bg-white/10 px-10 py-10 rounded-3xl flex flex-col items-center shadow-xl min-w-[240px] mx-4 flex-shrink-0 hover:bg-white/15 transition-all duration-300"
+                      className="sponsor-card bg-white/10 px-6 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10 rounded-3xl flex flex-col items-center shadow-xl min-w-[240px] mx-4 flex-shrink-0 hover:bg-white/15 transition-all duration-300"
                     >
                       <div className={`sponsor-logo w-24 h-24 rounded-2xl mb-6 ${sponsor.bg} flex items-center justify-center p-4`}>
                         <img src={sponsor.logo} alt={sponsor.name} className="w-16 h-16 object-contain" loading="lazy" />
@@ -705,7 +704,7 @@ export default function Home() {
         </section>
       </section>
       {/* FAQ Section */}
-      <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
+      <section className="py-20 px-12 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
           className="faq-section relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -741,10 +740,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="relative z-20 flex flex-col items-center">
-            <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Frequently Asked Questions</h2>
+          <div className="relative z-20 flex flex-col items-center px-6">
+            <h2 className={`font-bold text-5xl mb-8 md:mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>FAQ</h2>
             <div className="space-y-8 text-left max-w-3xl">
-              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <div className="faq-question cursor-pointer select-none flex justify-between items-center">
                   <h3 className="text-3xl font-semibold">What is a hackathon?</h3>
                   <span className="text-2xl font-bold">+</span>
@@ -753,7 +752,7 @@ export default function Home() {
                   <p className="text-gray-300 text-xl pt-3">A hackathon is an event where people come together to build creative solutions, learn new skills, and collaborate on projects—&ldquo;often over a short period like a weekend.&rdquo;</p>
                 </div>
               </div>
-              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <div className="faq-question cursor-pointer select-none flex justify-between items-center">
                   <h3 className="text-3xl font-semibold">Who can participate?</h3>
                   <span className="text-2xl font-bold">+</span>
@@ -762,7 +761,7 @@ export default function Home() {
                   <p className="text-gray-300 text-xl pt-3">Anyone interested in technology, design, or innovation! OSSome Hacks 3.0 is open to students and professionals of all skill levels.</p>
                 </div>
               </div>
-              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <div className="faq-question cursor-pointer select-none flex justify-between items-center">
                   <h3 className="text-3xl font-semibold">How do I stay updated?</h3>
                   <span className="text-2xl font-bold">+</span>
@@ -771,7 +770,7 @@ export default function Home() {
                   <p className="text-gray-300 text-xl pt-3">Follow us on social media and join our Discord for the latest updates. You can also reach out via email for any questions.</p>
                 </div>
               </div>
-              <div className="faq-card bg-white/5 p-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
                 <div className="faq-question cursor-pointer select-none flex justify-between items-center">
                   <h3 className="text-3xl font-semibold">Do I need a team?</h3>
                   <span className="text-2xl font-bold">+</span>
@@ -790,7 +789,7 @@ export default function Home() {
 
       <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
       {/* Prizes Section */}
-      <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
+      <section className="py-20 px-16 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
           className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -829,15 +828,15 @@ export default function Home() {
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Prizes</h2>
             <div className="prize-container grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
-              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
+              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Grand Prize</h3>
                 <p className="text-gray-300 text-lg">₹1,00,000</p>
               </div>
-              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
+              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Runner Up</h3>
                 <p className="text-gray-300 text-lg">₹50,000</p>
               </div>
-              <div className="prize-card bg-white/5 p-8 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
+              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
                 <h3 className="text-3xl font-bold mb-3">Best Freshman Team</h3>
                 <p className="text-gray-300 text-lg">₹25,000</p>
               </div>
@@ -848,13 +847,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 text-center text-gray-400 border-t border-white/10">
-        <div className="flex justify-center gap-6 mb-4">
+      <footer className="py-8 px-4 md:px-6 lg:px-8 text-center text-gray-400 border-t border-white/10">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-4">
           <a href="mailto:team@ossomehacks.com" className="hover:text-white">team@ossomehacks.com</a>
           <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-white">MLH Code of Conduct</a>
           <a href="#" className="hover:text-white">Privacy Policy</a>
         </div>
-        <div className="flex justify-center gap-6 mb-6">
+        <div className="flex justify-center gap-4 sm:gap-6 mb-6 flex-wrap">
           <a href="https://discord.com/invite/ossomehacks" target="_blank" rel="noopener noreferrer" aria-label="Discord" className="hover:text-cyan-300">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106c-.652-.247-1.274-.549-1.872-.892a.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.105 1.4 6.463 1.4 9.538 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.298 12.298 0 0 1-1.873.892.077.077 0 0 0-.041.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
           </a>
