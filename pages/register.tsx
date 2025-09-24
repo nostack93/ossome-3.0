@@ -126,6 +126,10 @@ export default function Register() {
             margin-bottom: 0.5rem;
             display: block;
         }
+        .form-select option {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+        }
       `}</style>
       <div className="stars">
         {stars.map((star, i) => (

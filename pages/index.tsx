@@ -211,7 +211,36 @@ export default function Home() {
         stagger: 0.4,
         scrollTrigger: {
           trigger: '.about-section',
-          start: 'top 70%',
+          start: 'top 60%',
+          end: 'bottom 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+    });
+
+    return () => {
+      // No cleanup possible here since ScrollTrigger is inside import
+      // But since it's one time, it's ok
+    };
+  }, []);
+
+  // GSAP Blur Reveal Animation for Sponsors Section
+  useEffect(() => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const sponsorsMaskedElements = gsap.utils.toArray('.masked-element') as HTMLElement[];
+
+      gsap.fromTo(sponsorsMaskedElements, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+        stagger: 0.4,
+        scrollTrigger: {
+          trigger: '#sponsors-section',
+          start: 'top 20%',
           end: 'bottom 20%',
           toggleActions: 'play reverse play reverse'
         }
@@ -477,7 +506,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col items-center">
+          <div className="relative z-20 flex flex-col items-center">
           <h1 id="hero-title" className={`font-bold text-white tracking-tight font-orbitron hero-title-glow text-center leading-tight`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif', opacity: 0, transform: 'scale(0.95)'}}>
             <span className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[8rem] whitespace-nowrap">OSSome</span>
             <span className="block sm:hidden text-6xl xs:text-7xl mt-2">Hacks 3.0</span>
@@ -490,7 +519,7 @@ export default function Home() {
               href="/register"
               className="interactive-btn inline-flex items-center justify-center gap-x-2 px-8 py-3 border border-white/40 text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
             >
-              <span>REGISTER</span>
+              <span>SHOW YOUR INTEREST</span>
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -634,7 +663,7 @@ export default function Home() {
     </section>
   </section>
       {/* Sponsors Section */}
-      <section className="py-20 px-6 max-w-4xl mx-auto text-center fade-in-section">
+      <section id="sponsors-section" className="py-20 mt-16 px-6 max-w-6xl mx-auto text-left fade-in-section">
         <section
           className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -671,16 +700,16 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="relative z-20 flex flex-col items-center">
-            <div className="flex flex-col-reverse sm:flex-row items-center justify-center mb-8 w-full max-w-6xl px-6">
-              <h2 className={`font-bold text-4xl sm:text-5xl mt-6 sm:mt-0 font-orbitron sm:mr-8`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
+          <div className="relative z-20 flex flex-col items-center" style={{marginLeft: '-350px'}}>
+            <div className="flex flex-col items-start -mt-8 mb-15 w-full max-w-6xl px-6">
+              <h2 className={`font-bold text-5xl sm:text-6xl font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
               <a
                 href="mailto:team@ossomehacks.com"
-                className="interactive-btn hidden sm:inline-flex items-center justify-center gap-x-2 px-6 sm:px-8 py-3 border border-white/40 text-sm sm:text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
+                className="interactive-btn inline-flex items-center justify-center gap-x-2 px-6 py-3 mt-12 border border-white/40 text-sm font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
               >
-                <span>TO SPONSOR</span>
+                <span>SPONSORS</span>
                 <svg
-                  className="w-4 sm:w-5 h-4 sm:h-5"
+                  className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -690,32 +719,54 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <div className="relative w-full overflow-hidden py-2 sm:py-8 mt-0 sm:mt-12 sponsor-container">
-              <div className="sponsor-carousel">
-                {[...Array(20)].flatMap((_, setIndex) => [
-                  "/sponsers/githubuniverse.com-34.svg",
-                  "/sponsers/githubuniverse.com-35.svg",
-                  "/sponsers/githubuniverse.com-37.svg",
-                  "/sponsers/githubuniverse.com-38.svg",
-                  "/sponsers/githubuniverse.com-39.svg",
-                  "/sponsers/githubuniverse.com-40.svg",
-                  "/sponsers/githubuniverse.com-41.svg",
-                  "/sponsers/githubuniverse.com-42.svg",
-                  "/sponsers/githubuniverse.com-43.svg",
-                  "/sponsers/githubuniverse.com-44.svg",
-                  "/sponsers/githubuniverse.com-45.svg",
-                  "/sponsers/githubuniverse.com-46.svg",
-                  "/sponsers/githubuniverse.com-48.svg"
-                ]).map((src, i) => (
-                  <div
-                    key={`svg-${i}`}
-                    className="sponsor-svg bg-white rounded-2xl flex flex-col items-center p-3 sm:p-4 min-w-[150px] sm:min-w-[200px] mx-2 sm:mx-4 flex-shrink-0 sponsor-card"
-                  >
-                    <img src={src} alt={`Sponsor Logo ${(i % 13) + 1}`} className="w-32 sm:w-48 h-32 sm:h-48 object-contain" loading="lazy" />
-                  </div>
-                ))}
-              </div>
+            <div className="flex flex-col items-start mb-4 w-full max-w-6xl px-6">
+              <h3 className="text-5xl font-bold mb-8 text-white text-left">Platinum</h3>
+            <div className="flex flex-nowrap justify-start gap-6 mb-12">
+              {[
+                { src: "/sponsers/01_Blue_sfyjmu.png", url: "https://bento.me/chennaireact" },
+                { src: "/sponsers/CDPR_Logo-Vertical-White_RGB_q6rqh3.png", url: "https://www.cdprojektred.com/en" },
+                { src: "/sponsers/CodeCrafters_Logo_White_vaosze.png", url: "https://codecrafters.io" },
+                { src: "/sponsers/Devfolio_Logo_Colored_s3pual.png", url: "https://devfolio.co/" },
+                { src: "/sponsers/ETHIndia_Light_vqfsoo.png", url: "https://ethindia2024.devfolio.co/" }
+              ].map((item, i) => (
+                <div
+                  key={`platinum-${i}`}
+                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-8 min-w-[220px] min-h-[220px] sponsor-card backdrop-blur-md bg-black/10"
+                  style={{position: 'relative'}}
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-md"></div>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer">
+                    <img src={item.src} alt={`Platinum Sponsor ${i + 1}`} className="sponsor-logo relative z-10 max-w-[200px] max-h-[200px]" loading="lazy" />
+                  </a>
+                </div>
+              ))}
             </div>
+            </div>
+
+            <div className="flex flex-col items-start mb-4 w-full max-w-6xl px-6">
+              <h3 className="text-5xl font-bold mb-8 text-white text-left">Gold</h3>
+            <div className="flex flex-nowrap justify-start gap-6 mb-12">
+              {[
+                { src: "/sponsers/Hashicorp-Vertical_onDark_ko8lsi.png", url: "https://www.hashicorp.com" },
+                { src: "/sponsers/Loft_Branding_clswts.png", url: "https://loftorbital.com/" },
+                { src: "/sponsers/Red-Bull-logo.png", url: "https://www.redbull.com" },
+                { src: "/sponsers/TPF_-_White_-_Logo_vzn8wb.png", url: "https://www.theproductfolks.com/" },
+                { src: "/sponsers/xyz-logo-color_mrldu1.svg", url: "https://www.xyz.vc/" }
+              ].map((item, i) => (
+                <div
+                  key={`gold-${i}`}
+                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-8 min-w-[220px] min-h-[220px] sponsor-card backdrop-blur-md bg-black/10"
+                  style={{position: 'relative'}}
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-md"></div>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer">
+                    <img src={item.src} alt={`Gold Sponsor ${i + 1}`} className="sponsor-logo relative z-10 max-w-[200px] max-h-[200px]" loading="lazy" />
+                  </a>
+                </div>
+              ))}
+            </div>
+            </div>
+
             <div className="sm:hidden mt-8">
               <a
                 href="mailto:team@ossomehacks.com"
@@ -737,8 +788,10 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
         </section>
       </section>
+
+      <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
       {/* FAQ Section */}
-      <section className="py-20 px-12 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
+      <section className="py-20 mt-32 px-12 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
           className="faq-section relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
           style={{position:'relative',width:'100vw',left:'50%',right:'50%',marginLeft:'-50vw',marginRight:'-50vw'}}
@@ -879,27 +932,34 @@ export default function Home() {
           </div>
           <div className="relative z-20 flex flex-col items-center">
             <h2 className={`font-bold text-4xl sm:text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Gallery</h2>
-            <div className="gallery-container relative w-full overflow-hidden min-h-[200px] sm:min-h-[400px] flex items-center py-2 sm:py-8 mt-2 sm:mt-8 sponsor-container" style={{height:'200px'}}>
+            <div className="gallery-container relative w-full overflow-hidden min-h-[300px] sm:min-h-[500px] flex items-center py-2 sm:py-8 mt-2 sm:mt-8 sponsor-container" style={{height:'300px'}}>
               <div className="gallery-carousel">
-                {[...Array(3)].flatMap((_, setIndex) => [
-                  "/sponsers/githubuniverse.com-34.svg",
-                  "/sponsers/githubuniverse.com-35.svg",
-                  "/sponsers/githubuniverse.com-37.svg",
-                  "/sponsers/githubuniverse.com-38.svg",
-                  "/sponsers/githubuniverse.com-39.svg",
-                  "/sponsers/githubuniverse.com-40.svg",
-                  "/sponsers/githubuniverse.com-41.svg",
-                  "/sponsers/githubuniverse.com-44.svg",
-                  "/sponsers/githubuniverse.com-45.svg",
-                  "/sponsers/githubuniverse.com-46.svg",
-                  "/sponsers/githubuniverse.com-48.svg"
+                {[
+                  ...Array(100)
+                ].flatMap((_, setIndex) => [
+                  "/gallery/image1.png",
+                  "/gallery/image2.png",
+                  "/gallery/image3.png",
+                  "/gallery/image4.png",
+                  "/gallery/image5.png",
+                  "/gallery/image6.png",
+                  "/gallery/image7.png",
+                  "/gallery/image8.png",
+                  "/gallery/image9.png",
+                  "/gallery/image10.png",
+                  "/gallery/image11.png",
+                  "/gallery/image12.png",
+                  "/gallery/image13.png",
+                  "/gallery/image14.png",
+                  "/gallery/image15.png",
+                  "/gallery/image16.png",
+                  "/gallery/image17.png",
+                  "/gallery/image18.png",
+                  "/gallery/image19.png",
+                  "/gallery/image20.png",
+                  "/gallery/image21.png"
                 ]).map((src, i) => (
-                  <div
-                    key={`gallery-${i}`}
-                    className="gallery-item bg-white rounded-2xl flex flex-col items-center p-3 sm:p-4 min-w-[150px] sm:min-w-[220px] mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3"
-                  >
-                    <img src={src} alt={`Gallery Logo ${(i % 13) + 1}`} className="w-32 sm:w-56 h-32 sm:h-56 object-contain" loading="lazy" />
-                  </div>
+                  <img src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '300px', height: '300px'}} loading="lazy" />
                 ))}
               </div>
               <style>{`
