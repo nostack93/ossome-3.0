@@ -412,7 +412,7 @@ export default function Home() {
         }
         .sponsor-carousel {
           display: flex;
-          animation: sponsor-move 50s linear infinite;
+        animation: sponsor-move 600s linear infinite;
           width: 300%;
         }
 
@@ -431,7 +431,7 @@ export default function Home() {
 
         @media (max-width: 480px) {
           .sponsor-carousel {
-            animation-duration: 35s;
+            animation-duration: 600s;
           }
         }
 
@@ -557,7 +557,7 @@ export default function Home() {
           </div>
           <div className="relative z-20 w-full flex flex-col items-center justify-center py-20 px-6">
             <div className="masked-container" style={{overflow: 'hidden'}}>
-              <h2 id="about-title" className={`masked-element font-bold text-5xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About</h2>
+              <h2 id="about-title" className={`masked-element font-bold text-6xl font-orbitron mb-6`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>About</h2>
               <p className="masked-element text-gray-300 text-lg sm:text-xl md:text-xl mb-4 max-w-4xl">
                 OSSome Hacks is a 48-hour hackathon dedicated to celebrating and contributing to open-source software. Join developers, designers, and innovators from around the globe to build amazing projects, learn new skills, and connect with the community.
               </p>
@@ -610,7 +610,7 @@ export default function Home() {
         ))}
       </div>
             <div className="relative z-20 flex flex-col items-center px-6">
-    <h2 className="font-bold text-5xl text-center mb-8 md:mb-12 font-orbitron" style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Schedule</h2>
+    <h2 className="font-bold text-5xl text-center mb-8 md:mb-12 font-orbitron" style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Timeline</h2>
     <div className="schedule-container grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto">
         <div className="schedule-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg" style={{transform: 'translateY(50px)', opacity: 0}}>
             <h3 className="text-3xl font-bold mb-3">Day 1: Kickoff</h3>
@@ -672,32 +672,66 @@ export default function Home() {
           </div>
 
           <div className="relative z-20 flex flex-col items-center">
-            <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Sponsors</h2>
-            <div className="relative w-full overflow-hidden min-h-[250px] flex items-center py-8 sponsor-container" style={{height:'250px'}}>
+            <div className="flex flex-col sm:flex-row items-center justify-center mb-8 w-full max-w-6xl px-6">
+              <h2 className={`font-bold text-4xl sm:text-5xl mb-4 sm:mb-0 font-orbitron sm:mr-8`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
+              <a
+                href="mailto:team@ossomehacks.com"
+                className="interactive-btn hidden sm:inline-flex items-center justify-center gap-x-2 px-6 sm:px-8 py-3 border border-white/40 text-sm sm:text-base font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
+              >
+                <span>TO SPONSOR</span>
+                <svg
+                  className="w-4 sm:w-5 h-4 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
+            </div>
+            <div className="relative w-full overflow-hidden py-8 mt-12 sponsor-container">
               <div className="sponsor-carousel">
-                {[...Array(3)].map((_, setIndex) => (
-                  [
-                    { name: "GitHub", logo: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", bg: "bg-gray-900" },
-                    { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", bg: "bg-blue-600" },
-                    { name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", bg: "bg-white" },
-                    { name: "Amazon", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg", bg: "bg-orange-500" },
-                    { name: "Meta", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg", bg: "bg-blue-600" },
-                    { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", bg: "bg-red-600" },
-                    { name: "Spotify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", bg: "bg-green-500" },
-                    { name: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", bg: "bg-red-500" }
-                  ].map((sponsor, i) => (
-                    <div
-                      key={`set-${setIndex}-${i}`}
-                      className="sponsor-card bg-white/10 px-6 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10 rounded-3xl flex flex-col items-center shadow-xl min-w-[240px] mx-4 flex-shrink-0 hover:bg-white/15 transition-all duration-300"
-                    >
-                      <div className={`sponsor-logo w-24 h-24 rounded-2xl mb-6 ${sponsor.bg} flex items-center justify-center p-4`}>
-                        <img src={sponsor.logo} alt={sponsor.name} className="w-16 h-16 object-contain" loading="lazy" />
-                      </div>
-                      <span className="text-xl font-bold text-cyan-200">{sponsor.name}</span>
-                    </div>
-                  ))
-                ).flat())}
+                {[...Array(20)].flatMap((_, setIndex) => [
+                  "/sponsers/githubuniverse.com-34.svg",
+                  "/sponsers/githubuniverse.com-35.svg",
+                  "/sponsers/githubuniverse.com-37.svg",
+                  "/sponsers/githubuniverse.com-38.svg",
+                  "/sponsers/githubuniverse.com-39.svg",
+                  "/sponsers/githubuniverse.com-40.svg",
+                  "/sponsers/githubuniverse.com-41.svg",
+                  "/sponsers/githubuniverse.com-42.svg",
+                  "/sponsers/githubuniverse.com-43.svg",
+                  "/sponsers/githubuniverse.com-44.svg",
+                  "/sponsers/githubuniverse.com-45.svg",
+                  "/sponsers/githubuniverse.com-46.svg",
+                  "/sponsers/githubuniverse.com-48.svg"
+                ]).map((src, i) => (
+                  <div
+                    key={`svg-${i}`}
+                    className="sponsor-svg bg-white rounded-2xl flex flex-col items-center p-3 sm:p-4 min-w-[150px] sm:min-w-[200px] mx-2 sm:mx-4 flex-shrink-0 sponsor-card"
+                  >
+                    <img src={src} alt={`Sponsor Logo ${(i % 13) + 1}`} className="w-32 sm:w-48 h-32 sm:h-48 object-contain" loading="lazy" />
+                  </div>
+                ))}
               </div>
+            </div>
+            <div className="sm:hidden mt-8">
+              <a
+                href="mailto:team@ossomehacks.com"
+                className="interactive-btn inline-flex items-center justify-center gap-x-2 px-6 py-3 border border-white/40 text-sm font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
+              >
+                <span>TO SPONSOR</span>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
@@ -779,6 +813,24 @@ export default function Home() {
                   <p className="text-gray-300 text-xl pt-3">No team? No problem! You can participate solo or find teammates during the event through our Discord and networking sessions.</p>
                 </div>
               </div>
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">What are the prizes?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">We offer exciting prizes including ₹1,00,000 for the Grand Prize, ₹50,000 for Runner Up, and ₹25,000 for the Best Freshman Team. Stay tuned for more details!</p>
+                </div>
+              </div>
+              <div className="faq-card bg-white/5 px-4 py-3 md:p-6 lg:px-8 lg:py-6 rounded-lg transition-all duration-300 hover:bg-white/10">
+                <div className="faq-question cursor-pointer select-none flex justify-between items-center">
+                  <h3 className="text-3xl font-semibold">How do I register?</h3>
+                  <span className="text-2xl font-bold">+</span>
+                </div>
+                <div className="faq-answer overflow-hidden">
+                  <p className="text-gray-300 text-xl pt-3">Registration is simple! Click the REGISTER button above and fill out the form. Make sure to join our Discord for the latest updates during the event.</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
@@ -826,20 +878,52 @@ export default function Home() {
             ))}
           </div>
           <div className="relative z-20 flex flex-col items-center">
-            <h2 className={`font-bold text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Prizes</h2>
-            <div className="prize-container grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
-              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
-                <h3 className="text-3xl font-bold mb-3">Grand Prize</h3>
-                <p className="text-gray-300 text-lg">₹1,00,000</p>
+            <h2 className={`font-bold text-4xl sm:text-5xl mb-12 font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Gallery</h2>
+            <div className="gallery-container relative w-full overflow-hidden min-h-[400px] flex items-center py-8 mt-8 sponsor-container" style={{height:'400px'}}>
+              <div className="gallery-carousel">
+                {[...Array(3)].flatMap((_, setIndex) => [
+                  "/sponsers/githubuniverse.com-34.svg",
+                  "/sponsers/githubuniverse.com-35.svg",
+                  "/sponsers/githubuniverse.com-37.svg",
+                  "/sponsers/githubuniverse.com-38.svg",
+                  "/sponsers/githubuniverse.com-39.svg",
+                  "/sponsers/githubuniverse.com-40.svg",
+                  "/sponsers/githubuniverse.com-41.svg",
+                  "/sponsers/githubuniverse.com-44.svg",
+                  "/sponsers/githubuniverse.com-45.svg",
+                  "/sponsers/githubuniverse.com-46.svg",
+                  "/sponsers/githubuniverse.com-48.svg"
+                ]).map((src, i) => (
+                  <div
+                    key={`gallery-${i}`}
+                    className="gallery-item bg-white rounded-2xl flex flex-col items-center p-3 sm:p-4 min-w-[150px] sm:min-w-[220px] mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3"
+                  >
+                    <img src={src} alt={`Gallery Logo ${(i % 13) + 1}`} className="w-32 sm:w-56 h-32 sm:h-56 object-contain" loading="lazy" />
+                  </div>
+                ))}
               </div>
-              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
-                <h3 className="text-3xl font-bold mb-3">Runner Up</h3>
-                <p className="text-gray-300 text-lg">₹50,000</p>
-              </div>
-              <div className="prize-card bg-white/5 px-6 py-4 md:px-8 md:py-6 rounded-lg transition-all duration-300 hover:bg-white/10" style={{transform: 'translateY(50px)', opacity: 0}}>
-                <h3 className="text-3xl font-bold mb-3">Best Freshman Team</h3>
-                <p className="text-gray-300 text-lg">₹25,000</p>
-              </div>
+              <style>{`
+                .gallery-carousel {
+                  display: flex;
+                  animation: gallery-move 60s linear infinite;
+                  width: 300%;
+                }
+
+                .gallery-carousel:hover {
+                  animation-play-state: paused;
+                }
+
+                @keyframes gallery-move {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(33.333%); }
+                }
+
+                @media (max-width: 480px) {
+                  .gallery-carousel {
+                    animation-duration: 45s;
+                  }
+                }
+              `}</style>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
