@@ -700,7 +700,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="relative z-20 flex flex-col items-center" style={{marginLeft: '-350px'}}>
+          <div className="relative z-20 flex flex-col items-center md:-ml-80 lg:-ml-[350px]">
             <div className="flex flex-col items-start -mt-8 mb-15 w-full max-w-6xl px-6">
               <h2 className={`font-bold text-5xl sm:text-6xl font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
               <a
@@ -721,7 +721,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-start mb-4 w-full max-w-6xl px-6">
               <h3 className="text-5xl font-bold mb-8 text-white text-left">Platinum</h3>
-            <div className="flex flex-nowrap justify-start gap-6 mb-12">
+            <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:gap-6 mb-12">
               {[
                 { src: "/sponsers/01_Blue_sfyjmu.png", url: "https://bento.me/chennaireact" },
                 { src: "/sponsers/CDPR_Logo-Vertical-White_RGB_q6rqh3.png", url: "https://www.cdprojektred.com/en" },
@@ -731,12 +731,12 @@ export default function Home() {
               ].map((item, i) => (
                 <div
                   key={`platinum-${i}`}
-                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-8 min-w-[220px] min-h-[220px] sponsor-card backdrop-blur-md bg-black/10"
+                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-2 md:p-8 sponsor-card backdrop-blur-md bg-black/10 w-28 h-28 md:w-48 md:h-48"
                   style={{position: 'relative'}}
                 >
                   <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-md"></div>
                   <a href={item.url} target="_blank" rel="noopener noreferrer">
-                    <img src={item.src} alt={`Platinum Sponsor ${i + 1}`} className="sponsor-logo relative z-10 max-w-[200px] max-h-[200px]" loading="lazy" />
+                    <img src={item.src} alt={`Platinum Sponsor ${i + 1}`} className="sponsor-logo relative z-10 w-24 h-24 md:w-40 md:h-40 object-contain" loading="lazy" />
                   </a>
                 </div>
               ))}
@@ -745,7 +745,7 @@ export default function Home() {
 
             <div className="flex flex-col items-start mb-4 w-full max-w-6xl px-6">
               <h3 className="text-5xl font-bold mb-8 text-white text-left">Gold</h3>
-            <div className="flex flex-nowrap justify-start gap-6 mb-12">
+            <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:gap-6 mb-12">
               {[
                 { src: "/sponsers/Hashicorp-Vertical_onDark_ko8lsi.png", url: "https://www.hashicorp.com" },
                 { src: "/sponsers/Loft_Branding_clswts.png", url: "https://loftorbital.com/" },
@@ -755,34 +755,16 @@ export default function Home() {
               ].map((item, i) => (
                 <div
                   key={`gold-${i}`}
-                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-8 min-w-[220px] min-h-[220px] sponsor-card backdrop-blur-md bg-black/10"
+                  className="sponsor-svg rounded-2xl flex flex-col items-center justify-center p-2 md:p-8 sponsor-card backdrop-blur-md bg-black/10 w-28 h-28 md:w-48 md:h-48"
                   style={{position: 'relative'}}
                 >
                   <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-md"></div>
                   <a href={item.url} target="_blank" rel="noopener noreferrer">
-                    <img src={item.src} alt={`Gold Sponsor ${i + 1}`} className="sponsor-logo relative z-10 max-w-[200px] max-h-[200px]" loading="lazy" />
+                    <img src={item.src} alt={`Gold Sponsor ${i + 1}`} className="sponsor-logo relative z-10 w-24 h-24 md:w-40 md:h-40 object-contain" loading="lazy" />
                   </a>
                 </div>
               ))}
             </div>
-            </div>
-
-            <div className="sm:hidden mt-8">
-              <a
-                href="mailto:team@ossomehacks.com"
-                className="interactive-btn inline-flex items-center justify-center gap-x-2 px-6 py-3 border border-white/40 text-sm font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
-              >
-                <span>TO SPONSOR</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </a>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
@@ -965,7 +947,7 @@ export default function Home() {
               <style>{`
                 .gallery-carousel {
                   display: flex;
-                  animation: gallery-move 60s linear infinite;
+                  animation: gallery-move 120s linear infinite;
                   width: 300%;
                 }
 
