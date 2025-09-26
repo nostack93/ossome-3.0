@@ -941,7 +941,7 @@ export default function Home() {
                   "/gallery/image20.png",
                   "/gallery/image21.png"
                 ]).map((src, i) => (
-                  <img src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '300px', height: '300px'}} loading="lazy" />
+                  <img key={i} src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '300px', height: '300px'}} loading="lazy" />
                 ))}
               </div>
               <style>{`
