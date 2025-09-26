@@ -920,7 +920,7 @@ export default function Home() {
             <div className="gallery-container relative w-full overflow-hidden min-h-[300px] sm:min-h-[500px] flex items-center py-2 sm:py-8 mt-2 sm:mt-8 sponsor-container" style={{height:'300px'}}>
               <div className="gallery-carousel">
                 {[
-                  ...Array(100)
+                  ...Array(20)
                 ].flatMap((_, setIndex) => [
                   "/gallery/image1.png",
                   "/gallery/image2.png",
@@ -952,6 +952,8 @@ export default function Home() {
                   display: flex;
                   animation: gallery-move 240s linear infinite;
                   width: 300%;
+                  will-change: transform;
+                  backface-visibility: hidden;
                 }
 
                 .gallery-carousel:hover {
