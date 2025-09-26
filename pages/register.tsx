@@ -24,14 +24,7 @@ type Star = {
   driftKey: string;
 };
 
-const schools = [
-  "University of Texas at Dallas",
-  "Texas A&M University",
-  "University of North Texas",
-  "Southern Methodist University",
-  "Rice University",
-  "University of Houston",
-];
+
 
 const levelsOfStudy = [
   "Less than Secondary / High School",
@@ -189,11 +182,7 @@ export default function Register() {
             </div>
             <div>
               <label htmlFor="school" className="form-label">School</label>
-              <select id="school" className="form-select">
-                {schools.map(school => (
-                  <option key={school} value={school}>{school}</option>
-                ))}
-              </select>
+              <input type="text" id="school" className="form-input" />
             </div>
             <div>
               <label htmlFor="level-of-study" className="form-label">Level of Study</label>
