@@ -941,13 +941,13 @@ export default function Home() {
                   "/gallery/image20.png",
                   "/gallery/image21.png"
                 ]).map((src, i) => (
-                  <img key={i} src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '300px', height: '300px'}} loading="lazy" />
+                  <img key={i} src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '400px', height: '400px'}} loading="lazy" />
                 ))}
               </div>
               <style>{`
                 .gallery-carousel {
                   display: flex;
-                  animation: gallery-move 120s linear infinite;
+                  animation: gallery-move 240s linear infinite;
                   width: 300%;
                 }
 
@@ -962,7 +962,7 @@ export default function Home() {
 
                 @media (max-width: 480px) {
                   .gallery-carousel {
-                    animation-duration: 45s;
+                    animation-duration: 90s;
                   }
                 }
               `}</style>
