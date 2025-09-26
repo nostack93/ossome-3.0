@@ -181,7 +181,7 @@ export default function Register() {
               <input type="email" id="email" className="form-input" />
             </div>
             <div>
-              <label htmlFor="school" className="form-label">School</label>
+              <label htmlFor="school" className="form-label">University</label>
               <input type="text" id="school" className="form-input" />
             </div>
             <div>

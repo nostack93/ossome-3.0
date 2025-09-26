@@ -512,7 +512,7 @@ export default function Home() {
             <span className="block sm:hidden text-6xl xs:text-7xl mt-2">Hacks 3.0</span>
             <span className="hidden sm:inline text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[8rem]"> Hacks 3.0</span>
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-300 mt-6">A Celebration of Open Source</p>
+          <p className="text-2xl md:text-3xl text-gray-300 mt-6">Empowering Innovation, One Awesome Hack at a Time!</p>
           <div className="flex flex-col sm:flex-row gap-6 mt-12">
             <Link
               href="/register"
@@ -601,6 +601,7 @@ export default function Home() {
 
   <div className="w-full flex justify-center"><div className="h-1 w-1/2 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-full mb-12" /></div>
   {/* Why Participate Section */}
+  {/*
   <section className="py-20 px-12 md:px-6 max-w-4xl mx-auto text-center fade-in-section">
         <section
           className="relative flex items-center justify-center text-center min-h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0"
@@ -661,6 +662,7 @@ export default function Home() {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
     </section>
   </section>
+  */ }
       {/* Sponsors Section */}
       <section id="sponsors-section" className="py-20 mt-16 px-6 max-w-6xl mx-auto text-left fade-in-section">
         <section
@@ -703,7 +705,9 @@ export default function Home() {
             <div className="flex flex-col items-start -mt-8 mb-15 w-full max-w-6xl px-6">
               <h2 className={`font-bold text-5xl sm:text-6xl font-orbitron`} style={{fontFamily: 'var(--font-orbitron), Orbitron, Rajdhani, Arial, sans-serif'}}>Past Sponsors</h2>
               <a
-                href="mailto:team@ossomehacks.com"
+                href="https://forms.gle/L1nHd8v8vrB7bXG39"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="interactive-btn inline-flex items-center justify-center gap-x-2 px-6 py-3 mt-12 border border-white/40 text-sm font-medium rounded-lg text-white bg-black/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-black focus:outline-none transition-colors duration-300"
               >
                 <span>SPONSOR US</span>
@@ -940,7 +944,7 @@ export default function Home() {
                   "/gallery/image20.png",
                   "/gallery/image21.png"
                 ]).map((src, i) => (
-                  <img key={i} src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" style={{width: '400px', height: '400px', borderRadius: '1rem'}} loading="lazy" />
+                  <img key={i} src={src} alt={`Gallery Image ${(i % 21) + 1}`} className="gallery-item w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-2xl mx-2 sm:mx-4 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:rotate-3" loading="lazy" />
                 ))}
               </div>
               <style>{`
@@ -974,7 +978,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 px-4 md:px-6 lg:px-8 text-center text-gray-400 border-t border-white/10">
         <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-4">
-          <a href="mailto:team@ossomehacks.com" className="hover:text-white">team@ossomehacks.com</a>
+          <a href="mailto:githubcommunitysrm@gmail.com" className="hover:text-white">githubcommunitysrm@gmail.com</a>
           <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-white">MLH Code of Conduct</a>
           <a href="#" className="hover:text-white">Privacy Policy</a>
         </div>
