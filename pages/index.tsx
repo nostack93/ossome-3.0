@@ -980,7 +980,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 px-4 md:px-6 lg:px-8 text-center text-gray-400 border-t border-white/10">
         <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-4">
-          <a href="mailto:githubcommunitysrm@gmail.com" className="hover:text-white">githubcommunitysrm@gmail.com</a>
+          <a href="mailto:events@githubsrmist.in" className="hover:text-white">events@githubsrmist.in</a>
           <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-white">MLH Code of Conduct</a>
           <a href="#" className="hover:text-white">Privacy Policy</a>
         </div>
